@@ -1,238 +1,310 @@
-📊 Retail Sales Analytics
-SQL + Excel Business Intelligence Dashboard
+# 📊 Retail Sales Analytics
 
-A complete end-to-end Sales Analytics project demonstrating how raw transactional data can be transformed into business insights using MySQL and Microsoft Excel BI tools.
+**SQL + Excel + Power BI Business Intelligence Project**
 
-📌 Project Overview
+A complete **end-to-end Sales Analytics project** demonstrating how raw transactional data can be transformed into **business insights** using **MySQL, Microsoft Excel, and Power BI**.
 
-This project is divided into two structured phases:
+---
 
-Phase 1: Sales Analytics using SQL (MySQL)
+# 📌 Project Overview
 
-Phase 2: Business Intelligence Dashboard using Excel
+This project is divided into **three structured phases**:
 
-It focuses on database design, analytical SQL queries, KPI generation, and executive-level dashboarding.
+**Phase 1:** Sales Analytics using SQL (MySQL)
+**Phase 2:** Business Intelligence Dashboard using Excel
+**Phase 3:** Interactive Data Visualization using Power BI
 
-🧩 Phase 1 – Sales Analytics Using SQL
-🎯 Objective
+The project focuses on:
 
-To design a normalized sales database and extract meaningful business insights using industry-standard SQL queries.
+* Database design
+* Analytical SQL queries
+* KPI generation
+* Business intelligence dashboards
+* Interactive data visualization
 
-🗄️ Database Details
+---
 
-Database Name: sales_db
+# 🧩 Phase 1 – Sales Analytics Using SQL
 
+## 🎯 Objective
+
+Design a normalized sales database and extract meaningful business insights using **industry-standard SQL queries**.
+
+## 🗄️ Database Details
+
+Database Name: `sales_db`
 DBMS: MySQL
-
 Design Approach: Normalized relational schema
 
-🧱 Database Schema
-1️⃣ customers
+---
 
-customer_id (PK)
+## 🧱 Database Schema
 
-customer_name
+### 1️⃣ customers
 
-city
+* customer_id (PK)
+* customer_name
+* city
+* country
 
-country
+### 2️⃣ products
 
-2️⃣ products
+* product_id (PK)
+* product_name
+* category
+* price
 
-product_id (PK)
+### 3️⃣ orders
 
-product_name
+* order_id (PK)
+* customer_id (FK)
+* order_date
 
-category
+### 4️⃣ orders_item
 
-price
+Bridge table resolving many-to-many relationship
 
-3️⃣ orders
+* orders_item_id (PK)
+* order_id (FK)
+* product_id (FK)
+* quantity
 
-order_id (PK)
+---
 
-customer_id (FK)
+## 🔗 Relationships
 
-order_date
+* One customer → many orders
+* One order → many products
+* One product → many orders
+* `orders_item` resolves many-to-many relationship
 
-4️⃣ orders_item (Bridge Table)
+---
 
-orders_item_id (PK)
+## 🧠 SQL Concepts Implemented
 
-order_id (FK)
+* INNER JOIN & LEFT JOIN
+* GROUP BY, HAVING
+* Subqueries
+* ORDER BY, LIMIT
+* COALESCE() for NULL handling
+* Aggregate functions (SUM, AVG)
+* Business analytical queries
 
-product_id (FK)
+---
 
-quantity
+## 📈 Business Insights Generated
 
-🔗 Relationships
+* 🔝 Top customers by total spending
+* 🛒 Best-selling products
+* 💰 High-value orders
+* 📦 Products never sold
+* 📊 Revenue per customer
+* 🧾 Total revenue analysis
 
-One customer → many orders
+All queries are **NULL-safe and production-ready**.
 
-One order → many products
+---
 
-One product → many orders
+## 🛡️ NULL Handling Strategy
 
-orders_item resolves the many-to-many relationship
+* Used LEFT JOIN where data may be missing
+* Applied COALESCE() to avoid NULL values
+* Ensured compatibility with **Pandas & NumPy**
 
-🧠 SQL Concepts Implemented
+---
 
-INNER JOIN & LEFT JOIN
+## 📂 Project Structure (Phase 1)
 
-GROUP BY, HAVING
-
-Subqueries
-
-ORDER BY, LIMIT
-
-NULL handling using COALESCE()
-
-Aggregate functions (SUM, AVG)
-
-Business-level analytical queries
-
-📈 Business Insights Generated
-
-🔝 Top customers by total spending
-
-🛒 Best-selling products
-
-💰 High-value orders
-
-📦 Products never sold
-
-📊 Revenue per customer
-
-🧾 Total revenue analysis
-
-✔ All queries are NULL-safe and production-ready.
-
-🛡️ NULL Handling Strategy
-
-Used LEFT JOIN where data may be missing
-
-Applied COALESCE() to avoid NULL values
-
-Ensured compatibility with Pandas & NumPy for future analysis
-
-📂 Project Structure (Phase 1)
-sales-analytics-sql/
+```
+sales-analytics-sql
 │
-├── schema.sql              # Database & table creation
-├── sample_data.sql         # Sample insert data
-├── analysis_queries.sql    # Business & analytical queries
-├── views.sql               # Reusable SQL views
-└── README.md               # Project documentation
-📊 Phase 2 – Business Intelligence Dashboard (Excel)
-🎯 Objective
+├── schema.sql
+├── sample_data.sql
+├── analysis_queries.sql
+├── views.sql
+└── README.md
+```
 
-To transform structured SQL data into an interactive executive-level BI dashboard using Microsoft Excel.
+---
 
-🛠 Tools & Technologies
+# 📊 Phase 2 – Business Intelligence Dashboard (Excel)
 
-Power Query (Data Cleaning & Transformation)
+## 🎯 Objective
 
-Power Pivot (Data Modeling)
+Transform structured SQL data into an **interactive executive-level dashboard** using Microsoft Excel.
 
-Excel Data Model
+---
 
-DAX Measures
+## 🛠 Tools & Technologies
 
-Pivot Tables & Pivot Charts
+* Power Query
+* Power Pivot
+* Excel Data Model
+* DAX Measures
+* Pivot Tables & Pivot Charts
+* Interactive Slicers
 
-Slicers
+---
 
-Executive Dashboard Design
+## 🔄 Data Workflow
 
-🔄 Data Workflow
+1. Generated structured sales data in MySQL
+2. Created analytical SQL view: `sales_summary`
+3. Imported data into Excel
+4. Loaded data into Excel Data Model
+5. Created DAX measures
+6. Designed interactive dashboard
 
-Generated structured sales data in MySQL
+---
 
-Created analytical SQL view: sales_summary
+## 📈 KPI Metrics Implemented
 
-Imported data into Excel
+* Total Revenue
+* Total Orders
+* Average Order Value (AOV)
 
-Loaded data into the Data Model
+### DAX Measures
 
-Created DAX measures
-
-Designed interactive dashboard
-
-📈 KPI Metrics Implemented
-
-Total Revenue
-
-Total Orders
-
-Average Order Value (AOV)
-
-🧮 DAX Measures
+```
 Total Revenue := SUM(sales_summary[total_amount])
 
 Total Orders := DISTINCTCOUNT(sales_summary[order_id])
 
 Avg Order Value := DIVIDE([Total Revenue], [Total Orders])
-📊 Dashboard Components
+```
 
-Monthly Revenue Trend (Line Chart)
+---
 
-Monthly Revenue & Orders (Combo Chart)
+## 📊 Dashboard Components
 
-Revenue by Category
+* Monthly Revenue Trend (Line Chart)
+* Monthly Revenue vs Orders (Combo Chart)
+* Revenue by Category
+* Top 5 Customers by Revenue
+* Top 5 Products by Revenue
+* Interactive Slicers
 
-Top 5 Customers by Revenue
+---
 
-Top 5 Products by Revenue
+# 📊 Phase 3 – Business Intelligence Dashboard (Power BI)
 
-Interactive Slicers (City & Category)
+## 🎯 Objective
 
-📌 Key Insights
+Create a **modern interactive analytics dashboard** using Power BI for deeper business insights and advanced visual analytics.
 
-📈 Revenue spike during Q4 season
+---
 
-💻 Electronics category contributes highest revenue
+## 🛠 Tools Used
 
-🧍 Revenue concentration among top customers
+* Power BI Desktop
+* Power Query
+* Data Modeling
+* DAX Measures
+* Interactive Visualizations
 
-🏆 Product performance ranking analysis
+---
 
-🎨 Dashboard Design Approach
+## 📊 Power BI Dashboard Features
 
-Clean executive layout
+* Sales Overview Dashboard
+* Regional Sales Analysis
+* Category Performance
+* Product Profitability Analysis
+* Monthly Sales Trends
+* Customer Insights
+* Interactive Filters & Slicers
 
-KPI cards at the top
+---
 
-Centered visual alignment
+## 📈 Power BI Visualizations Used
 
-Interactive slicers
+* Bar Chart
+* Line Chart
+* Waterfall Chart
+* Treemap
+* Donut Chart
+* Map Visualization
+* Scatter Plot
+* Key Influencers Analysis
+* Decomposition Tree
 
-Backend sheets hidden
+---
 
-Workbook structure protected
+## 📊 Key Insights from Power BI Dashboard
 
-💼 Skills Demonstrated
+* East region contributes the highest sales revenue
+* Electronics category dominates overall revenue
+* Sales show seasonal patterns across months
+* Profit growth directly impacts total sales
+* Customer purchasing patterns vary by region
+
+---
+
+## 📂 Project Structure (Full Project)
+
+```
+Retail-Sales-Analytics
+│
+├── SQL
+│   ├── schema.sql
+│   ├── sample_data.sql
+│   ├── analysis_queries.sql
+│   └── views.sql
+│
+├── Excel_Dashboard
+│   └── Retail_Analytics_Dashboard.xlsx
+│
+├── PowerBI
+│   └── Retail_Analytics.pbix
+│
+├── screenshots
+│   ├── dashboard_overview.png
+│   ├── sales_analysis.png
+│   └── kpi_section.png
+│
+├── slides
+│   └── PowerBI_Presentation.pptx
+│
+└── README.md
+```
+
+---
+
+# 🎨 Dashboard Design Principles
+
+* Clean executive layout
+* KPI cards positioned at top
+* Consistent color palette
+* Interactive filters
+* Clear visual storytelling
+* Professional BI layout
+
+---
+
+# 💼 Skills Demonstrated
 
 ✔ SQL Database Design
 ✔ Data Modeling
 ✔ Advanced SQL Analytics
+✔ Business Intelligence (Excel & Power BI)
 ✔ DAX Calculations
 ✔ KPI Design
-✔ BI Dashboard Storytelling
-✔ Excel BI Best Practices
+✔ Dashboard Storytelling
+✔ Data Visualization
 
-👤 Author
+---
 
-Lokesh Hate
+# 👤 Author
+
+**Lokesh Hate**
 SQL & Data Analytics Learner
 
-✅ Project Status
+---
 
-✔ Phase 1 Completed
+# ✅ Project Status
 
-✔ Database Schema Verified
+✔ Phase 1 Completed (SQL Analytics)
+✔ Phase 2 Completed (Excel BI Dashboard)
+✔ Phase 3 Completed (Power BI Dashboard)
+✔ GitHub Portfolio Ready
 
-✔ Business Queries Validated
-
-✔ Phase 2 Dashboard Completed
-
-✔ GitHub & Resume Ready
